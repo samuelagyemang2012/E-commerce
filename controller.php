@@ -29,11 +29,39 @@ if (isset($_REQUEST['cmd'])) {
             break;
 
         case 6:
-            logdata();
+            logData();
+            break;
+
+        case 7:
+            advancedSearch();
+            break;
+
+        case 8:
+            allWineries();
+            break;
+
+        case 9:
+            forWUpdates();
+            break;
+
+        case 10:
+            forTUpdates();
+            break;
+
+        case 11:
+            update();
+            break;
+
+        case 12:
+            add();
+            break;
+
+        case 13:
+            logOut();
             break;
 
         default :
-            echo '{"result":0, "message","error"}';
+            echo '{"result":0, "message":"error"}';
             break;
     }
 }
@@ -41,7 +69,8 @@ if (isset($_REQUEST['cmd'])) {
 /**
  *
  */
-function allWines(){
+function allWines()
+{
     include_once 'Wine.php';
 
     $object = new Wine();
@@ -50,16 +79,15 @@ function allWines(){
         $row = $results->fetch_assoc();
         echo '{"result":1, "wines": [';
 
-        while ($row){
-            echo '{"wine_id":"'.$row["wine_id"].'","wine_name":"'.$row["wine_name"].'","winery_name":"'.$row["winery_name"].'","region_name":"'.$row["region_name"].'","wine_type":"'.$row["wine_type"].'","variety":"'.$row["variety"].'","variety_id":"'.$row["variety_id"].'","year":"'.$row["year"].'","on_hand":"'.$row["on_hand"].'","cost":"'.$row["cost"].'"}';
+        while ($row) {
+            echo '{"result":1,"wine_id":"' . $row["wine_id"] . '","wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
 
-            if($row = $results->fetch_assoc()){
+            if ($row = $results->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }
-    else{
+    } else {
         echo '{"result":0,"message": "An error occurred for display wines."}';
     }
 }
@@ -67,7 +95,8 @@ function allWines(){
 /**
  *
  */
-function searchForWines() {
+function searchForWines()
+{
 
     include_once 'Wine.php';
 
@@ -79,24 +108,23 @@ function searchForWines() {
         $row = $results->fetch_assoc();
         echo '{"result":1, "wines": [';
 
-        while ($row){
-            echo '{"wine_id":"'.$row["wine_id"].'","wine_name":"'.$row["wine_name"].'","winery_name":"'.$row["winery_name"].'","region_name":"'.$row["region_name"].'","wine_type":"'.$row["wine_type"].'","variety":"'.$row["variety"].'","variety_id":"'.$row["variety_id"].'","year":"'.$row["year"].'","on_hand":"'.$row["on_hand"].'","cost":"'.$row["cost"].'"}';
-
-            if($row = $results->fetch_assoc()){
+        while ($row) {
+            echo '{"result":1, "wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
+            if ($row = $results->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }
-    else{
-        echo '{"result":0,"message": "An error occurred for display wines."}';
+    } else {
+        echo '{"result":0,"message": "An error occurred for search wines."}';
     }
 }
 
 /**
  *
  */
-function searchForTypes(){
+function searchForTypes()
+{
     include_once 'Wine.php';
 
     $object = new Wine();
@@ -107,16 +135,14 @@ function searchForTypes(){
         $row = $results->fetch_assoc();
         echo '{"result":1, "wines": [';
 
-        while ($row){
-            echo '{"wine_id":"'.$row["wine_id"].'","wine_name":"'.$row["wine_name"].'","winery_name":"'.$row["winery_name"].'","region_name":"'.$row["region_name"].'","wine_type":"'.$row["wine_type"].'","variety":"'.$row["variety"].'","variety_id":"'.$row["variety_id"].'","year":"'.$row["year"].'","on_hand":"'.$row["on_hand"].'","cost":"'.$row["cost"].'"}';
-
-            if($row = $results->fetch_assoc()){
+        while ($row) {
+            echo '{"result":1, "wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
+            if ($row = $results->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }
-    else{
+    } else {
         echo '{"result":0,"message": "An error occurred for display wines."}';
     }
 }
@@ -124,7 +150,8 @@ function searchForTypes(){
 /**
  *
  */
-function sortPrice(){
+function sortPrice()
+{
     include_once 'Wine.php';
 
     $object = new Wine();
@@ -133,16 +160,14 @@ function sortPrice(){
         $row = $results->fetch_assoc();
         echo '{"result":1, "wines": [';
 
-        while ($row){
-            echo '{"wine_id":"'.$row["wine_id"].'","wine_name":"'.$row["wine_name"].'","winery_name":"'.$row["winery_name"].'","region_name":"'.$row["region_name"].'","wine_type":"'.$row["wine_type"].'","variety":"'.$row["variety"].'","variety_id":"'.$row["variety_id"].'","year":"'.$row["year"].'","on_hand":"'.$row["on_hand"].'","cost":"'.$row["cost"].'"}';
-
-            if($row = $results->fetch_assoc()){
+        while ($row) {
+            echo '{"result":1, "wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
+            if ($row = $results->fetch_assoc()) {
                 echo ',';
             }
         }
         echo ']}';
-    }
-    else{
+    } else {
         echo '{"result":0,"message": "An error occurred for display wines."}';
     }
 }
@@ -150,24 +175,25 @@ function sortPrice(){
 /**
  *
  */
-function getWineDetails(){
+function getWineDetails()
+{
     include_once 'Wine.php';
 
     $object = new Wine();
 
     $id = $_GET['id'];
-    $var = $_GET['variety'];
+//    $var = $_GET['variety'];
 
-    if ($results = $object->getDetails($id,$var)) {
+    if ($results = $object->getDetails($id)) {
         $row = $results->fetch_assoc();
-        echo '{"result":1,"wine_id":"'.$row["wine_id"].'","wine_name":"'.$row["wine_name"].'","winery_name":"'.$row["winery_name"].'","region_name":"'.$row["region_name"].'","wine_type":"'.$row["wine_type"].'","variety":"'.$row["variety"].'","variety_id":"'.$row["variety_id"].'","year":"'.$row["year"].'","on_hand":"'.$row["on_hand"].'","cost":"'.$row["cost"].'"}';
-    }
-    else{
+        echo '{"result":1, "wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
+    } else {
         echo '{"result":0,"message": "An error occurred for display wines."}';
     }
 }
 
-function logdata(){
+function logData()
+{
     include_once 'adminClass.php';
 
     $object = new User();
@@ -175,7 +201,7 @@ function logdata(){
     $username = $_GET['username'];
     $password = $_GET['password'];
 
-    if($result = $object->login($username,$password)){
+    if ($result = $object->login($username, $password)) {
         $row = $result->fetch_assoc();
 
         $_SESSION['username'] = $row['user_name'];
@@ -185,8 +211,141 @@ function logdata(){
 
 
 //        window.location.replace('edit.php');
-    }
-    else{
+    } else {
         echo '{"result":"0"}';
     }
+}
+
+function update()
+{
+    include_once 'adminClass.php';
+
+    $object = new User();
+
+    $name = $_GET['name'];
+    $year = $_GET['year'];
+    $winery = $_GET['woo'];
+    $type = $_GET['type'];
+    $cost = $_GET['cost'];
+    $id = $_GET['id'];
+
+    $result = $object->update($name, $type, $winery, $year, $cost, $id);
+
+    if ($result === true) {
+        echo '{"result": 1}';
+    } else {
+        echo '{"result": 0}';
+    }
+}
+
+function add()
+{
+    include_once 'adminClass.php';
+
+    $object = new User();
+
+    $name = $_GET['name'];
+    $year = $_GET['year'];
+    $type = $_GET['type'];
+    $winery = $_GET['winery'];
+    $qty = $_GET['qty'];
+    $cost = $_GET['cost'];
+    $id = $_GET['id'];
+
+    $result = $object->add($id, $name, $type, $year, $winery, $cost, $qty);
+//    $id,$name,$type,$year,$winery,$cost,$qty
+
+    if ($result === true) {
+        echo '{"result": 1}';
+    } else {
+        echo '{"result": 0}';
+    }
+
+}
+
+function advancedSearch()
+{
+    include_once 'Wine.php';
+
+    $object = new Wine();
+
+    $name = $_GET["name"];
+    $year = $_GET['year'];
+    if ($results = $object->advancedSearch($name, $year)) {
+        $row = $results->fetch_assoc();
+        echo '{"result":1, "wines": [';
+
+        while ($row) {
+            echo '{"result":1,"wine_id":"' . $row["wine_id"] . '", "wine_name":"' . $row["wine_name"] . '","winery_name":"' . $row["winery_name"] . '","winery_id":"' . $row["winery_id"] . '","wine_type":"' . $row["wine_type"] . '","year":"' . $row["year"] . '","cost":"' . $row["cost"] . '"}';
+            if ($row = $results->fetch_assoc()) {
+                echo ',';
+            }
+        }
+        echo ']}';
+    } else {
+        echo '{"result":0,"message": "An error occurred for search wines."}';
+    }
+}
+
+function allWineries()
+{
+    include_once 'adminClass.php';
+
+    $object = new User();
+
+    if ($results = $object->allWineries()) {
+        $row = $results->fetch_assoc();
+        echo '{"result":1, "wineries": [';
+
+        while ($row) {
+            echo '{"result":1,"winery_id":"' . $row["winery_id"] . '", "winery_name":"' . $row["winery_name"] . '"}';
+            if ($row = $results->fetch_assoc()) {
+                echo ',';
+            }
+        }
+        echo ']}';
+    } else {
+        echo '{"result":0,"message": "An error occurred for search wines."}';
+    }
+}
+
+function forWUpdates()
+{
+    include_once 'adminClass.php';
+
+    $object = new User();
+
+    $name = $_GET['name'];
+
+    if ($results = $object->forWinery($name)) {
+        $row = $results->fetch_assoc();
+        echo '{"result":1, "winery":' . $row['winery_id'] . '}';
+    } else {
+        echo '{"result":0}';
+    }
+}
+
+function forTUpdates()
+{
+    include_once 'adminClass.php';
+
+    $object = new User();
+
+    $type = $_GET['type'];
+
+    if ($results = $object->forType($type)) {
+        $row = $results->fetch_assoc();
+        echo '{"result":1, "type":' . $row['wine_type_id'] . '}';
+    } else {
+        echo '{"result":0}';
+    }
+}
+
+function logOut()
+{
+
+//    session_destroy();
+
+//    echo '{"result":1}';
+
 }

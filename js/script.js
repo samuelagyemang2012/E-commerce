@@ -16,7 +16,6 @@ function send_request(url) {
     return result;
 }
 
-
 function change_page(page) {
     var btn_next = document.getElementById("btn_next");
     var btn_prev = document.getElementById("btn_prev");
@@ -37,20 +36,20 @@ function change_page(page) {
         num = myArray[i].wine_id % 10;
         // alert(num);
         listing_table += '<div class="col s3">';
-        listing_table += '<div class="card" style="height: 340px; width: 300px;">';
+        listing_table += '<div class="card" style="height: 300px; width: 300px;">';
         listing_table += '<div class="card-image waves-effect waves-block waves-light">';
         listing_table += '<center><img class="activator" src="../E-Commerce/images/' + num + '.png" style="height: 200px; width: 80px"></center></div>';
         listing_table += '<div class="card-content">';
         listing_table += '<span class="card-title activator green-text text-darken-4">' + myArray[i].wine_name + '<i class="material-icons right">more_vert</i></span>';
-        listing_table += '<p><a href="#">More Details</a></p>';
+        //listing_table += '<p><a href="#">More Details</a></p>';
         listing_table += '</div>';
         listing_table += '<div class="card-reveal">';
         listing_table += '<span class="card-title grey-text text-darken-4">' + myArray[i].wine_name + '<i class="material-icons right">close</i>  </span>';
-        listing_table += '<p>Id:' + myArray[i].wine_id + '</p>';
+        //listing_table += '<p>Id:' + myArray[i].wine_id + '</p>';
         listing_table += '<p>Year:' + myArray[i].year + '</p>';
         listing_table += '<p>Winery: ' + myArray[i].winery_name + '</p>';
         listing_table += '<p>Wine Type: ' + myArray[i].wine_type + '</p>';
-        listing_table += '<p>Grape Variety: ' + myArray[i].variety + '</p>';
+        //listing_table += '<p>Grape Variety: ' + myArray[i].variety + '</p>';
         listing_table += '<h5> $' + myArray[i].cost + '</h5>';
         listing_table += '<center></p><a class="waves-effect waves-light btn" style="background-color: #8bc34a">Add to Cart</a></p></center>';
         listing_table += ' </div>';
@@ -75,7 +74,6 @@ function change_page(page) {
         btn_next.style.visibility = 'visible';
     }
 }
-
 
 function prevPage() {
 
@@ -143,5 +141,51 @@ function sort_price() {
     result = send_request(url);
     myArray = result.wines;
     change_page(1);
+}
+
+function advanced_search() {
+
+    var url, name, year, result;
+
+    name = $("#srh_name").val();
+    year = $("#srh_price").val();
+
+    url = "controller.php?cmd=7&name=" + name + "&year=" + year;
+
+    result = send_request(url);
+
+    var div = "";
+    div += '<center>';
+    div += '<table class="centered" >';
+    div += '<thead>';
+    div += '<tr>';
+    div += '<th data-field="name" style="color: #00695c"> Wine</th>';
+    div += '<th data-field="id"   style="color: #00695c"> Year</th>';
+    div += '<th data-field="id"   style="color: #00695c"> Wine Type</th>';
+    div += '<th data-field="id"   style="color: #00695c"> Winery</th>';
+    //div += '<th data-field="id"   style="color: #00695c"> Variety</th>';
+    div += '<th data-field="id"   style="color: #00695c"> Cost</th>';
+    div += '<th data-field="id"   style="color: #00695c"> </th>';
+    div += '<th data-field="id"></th>';
+    div += '<th data-field="id"></th>';
+    div += '</tr>';
+    div += '</thead>';
+    div += '<tbody>';
+
+    for (var i in result.wines) {
+        div += '<tr>';
+        div += '<td>' + result.wines[i].wine_name + '</td>';
+        div += '<td>' + result.wines[i].year + '</td>';
+        div += '<td>' + result.wines[i].wine_type + '</td>';
+        div += '<td>' + result.wines[i].winery_name + '</td>';
+        div += '<td> $' + result.wines[i].cost + '</td>';
+        div += '</tr>';
+    }
+
+    div += '</tbody>';
+    div += '</table>';
+    div += '</center>';
+
+    $("#searchResults").html(div);
 }
 
