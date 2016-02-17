@@ -379,8 +379,11 @@ function logOut()
 }
 
 /**
- * @param $name
+ *
  */
-function upload(){
-
+function upload()
+{
+    if ($_FILES['file']['size']) {
+        move_uploaded_file($_FILES['file']['tmp_name'], "images/" . $_FILES['file']["name"]);
+    }
 }

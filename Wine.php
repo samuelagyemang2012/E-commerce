@@ -47,8 +47,8 @@ class Wine extends Adb
 //                   ORDER BY `w`.`wine_name` ASC";
 
         $string = "select w.wine_id,
-w.wine_name,
-t.wine_type,
+                   w.wine_name,
+                   t.wine_type,
 n.winery_name,
 n.winery_id,
 w.year,
@@ -157,13 +157,14 @@ where w.wine_name like ?";
 //                   ORDER BY `w`.`wine_id` ASC";
 
         $string = "select w.wine_id,
-                   w.wine_name,
+                    w.wine_name,
                     t.wine_type,
-  n.winery_name,
-  n.winery_id,
-  n.winery_id,
-w.year,
-i.cost
+                    n.winery_name,
+                    n.winery_id,
+                    n.winery_id,
+
+                    w.year,
+                    i.cost
 from wine w
 inner join wine_type t
 on w.wine_type = t.wine_type_id
@@ -185,51 +186,23 @@ order by w.wine_name asc";
      */
     public function sortByPrice()
     {
-//        $string = "select distinct
-//                   w.wine_id,
-//                   w.wine_name,
-//                   n.winery_name,
-//                   r.region_name,
-//                   t.wine_type,
-//                   g.variety,
-//                   wv.variety_id,
-//                   w.year,
-//                   i.on_hand,
-//                   i.cost
-//                   from grape_variety g
-//                   inner join wine_variety wv
-//                   on wv.variety_id = g.variety_id
-//                   inner join wine w
-//                   on w.wine_id = wv.wine_id
-//                   inner join wine_type t
-//                   on w.wine_type = t.wine_type_id
-//                   inner join inventory i
-//                   on w.wine_id = i.wine_id
-//                   inner join winery n
-//                   on w.winery_id = n.winery_id
-//                   inner join region r
-//                   on n.region_id = r.region_id
-//                   ORDER BY i.cost desc";
-
         $string = "select w.wine_id,
-w.wine_name,
-t.wine_type,
-n.winery_name,
-n.winery_id,
-w.year,
-i.cost
-from wine w
-inner join wine_type t
-on w.wine_type = t.wine_type_id
-inner join winery n
-ON w.winery_id = n.winery_id
-inner join inventory i
-on w.wine_id = i.wine_id
-order by i.cost desc";
-
+                   w.wine_name,
+                   t.wine_type,
+                   n.winery_name,
+                   n.winery_id,
+                   w.year,
+                   i.cost
+                   from wine w
+                   inner join wine_type t
+                   on w.wine_type = t.wine_type_id
+                   inner join winery n
+                   ON w.winery_id = n.winery_id
+                   inner join inventory i
+                   on w.wine_id = i.wine_id
+                   order by i.cost desc";
 
         return $this->query($string);
-
     }
 
 
@@ -240,48 +213,21 @@ order by i.cost desc";
      */
     public function getDetails($id)
     {
-//        $string = "select distinct
-//                   w.wine_id,
-//                   w.wine_name,
-//                   n.winery_name,
-//                   r.region_name,
-//                   t.wine_type,
-//                   g.variety,
-//                   wv.variety_id,
-//                   w.year,
-//                   i.on_hand,
-//                   i.cost
-//                   from grape_variety g
-//                   inner join wine_variety wv
-//                   on wv.variety_id = g.variety_id
-//                   inner join wine w
-//                   on w.wine_id = wv.wine_id
-//                   inner join wine_type t
-//                   on w.wine_type = t.wine_type_id
-//                   inner join inventory i
-//                   on w.wine_id = i.wine_id
-//                   inner join winery n
-//                   on w.winery_id = n.winery_id
-//                   inner join region r
-//                   on n.region_id = r.region_id
-//                   where w.wine_id = ? and g.variety = ?
-//                   order by i.cost DESC ";
-
         $string = "select w.wine_id,
-w.wine_name,
-t.wine_type,
-n.winery_name,
-n.winery_id,
-w.year,
-i.cost
-from wine w
-inner join wine_type t
-on w.wine_type = t.wine_type_id
-inner join winery n
-ON w.winery_id = n.winery_id
-inner join inventory i
-on w.wine_id = i.wine_id
-where w.wine_id = ?";
+                   w.wine_name,
+                   t.wine_type,
+                   n.winery_name,
+                   n.winery_id,
+                   w.year,
+                   i.cost
+                   from wine w
+                   inner join wine_type t
+                   on w.wine_type = t.wine_type_id
+                   inner join winery n
+                   ON w.winery_id = n.winery_id
+                   inner join inventory i
+                   on w.wine_id = i.wine_id
+                   where w.wine_id = ?";
 
         $s = $this->prepare($string);
         $s->bind_param('i', $id);
@@ -301,17 +247,17 @@ where w.wine_id = ?";
                    w.wine_name,
                    t.wine_type,
                    n.winery_name,
-  n.winery_id,
-  w.year,
-  i.cost
-  from wine w
-  inner join wine_type t
-    on w.wine_type = t.wine_type_id
-  inner join winery n
-    ON w.winery_id = n.winery_id
-  inner join inventory i
-    on w.wine_id = i.wine_id
-where w.wine_name = ? and w.year = ?";
+                   n.winery_id,
+                   w.year,
+                   i.cost
+                   from wine w
+                   inner join wine_type t
+                   on w.wine_type = t.wine_type_id
+                   inner join winery n
+                   ON w.winery_id = n.winery_id
+                   inner join inventory i
+                   on w.wine_id = i.wine_id
+                   where w.wine_name = ? and w.year = ?";
 
         $s = $this->prepare($string);
         $s->bind_param('si', $name, $year);

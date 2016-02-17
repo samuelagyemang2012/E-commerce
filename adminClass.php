@@ -77,7 +77,7 @@ class User extends Adb
      */
     function allWineries()
     {
-        $string = "select * from winery";
+        $string = "select * from winery order by winery_name asc";
 
         return $this->query($string);
     }

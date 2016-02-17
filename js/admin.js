@@ -186,7 +186,7 @@ function update() {
 
     year = document.getElementById("year").value;
 
-    cost = document.getElementById("cost").value
+    cost = document.getElementById("cost").value;
 
     winery = document.getElementById("winery").value;
 
@@ -206,7 +206,7 @@ function update() {
 
     if (result.result === 1) {
         Materialize.toast('Updated!', 4000);
-        window.location.reload('edit.php');
+        window.location.replace('edit.php');
     }
     else {
         alert("failed");
@@ -268,7 +268,7 @@ function insert() {
 
     if (result.result === 1) {
         Materialize.toast('Added Successfully!', 4000);
-        window.location.reload('edit.php');
+        window.location.replace('edit.php');
     }
 }
 
