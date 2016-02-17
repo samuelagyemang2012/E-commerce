@@ -1,9 +1,7 @@
 <?php
-
 include_once('adminClass.php');
 include_once('controller.php');
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -30,16 +28,12 @@ session_start();
     $(document).ready(function () {
         admin_load_wines();
     });
-
     $(document).ready(function () {
         populateWineries();
     });
-
     $(document).ready(function () {
         $('select').material_select();
     });
-
-
 </script>
 
 <body>
@@ -134,21 +128,26 @@ session_start();
             <label for="cost">Cost</label>
         </div>
 
-        <div class="file-field input-field i">
-            <div class="btn">
-                <span>Image</span>
-                <input type="file">
+        <form>
+            <div class="file-field input-field i">
+                <div class="btn">
+                    <span>Image</span>
+                    <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div>
 
+            <div>
+                <button type="submit" class="btn btn">Upload</button>
+            </div>
+            <br>
+        </form>
 
         <div id="forbutton">
 
         </div>
-
     </div>
 </div>
 

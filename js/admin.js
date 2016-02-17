@@ -171,7 +171,10 @@ function get_details(id) {
     w_id = id;
     //alert(result.cost);
     var but = "";
-    but = '<a class="waves-effect waves-light btn" onclick="update()">Update</a>';
+    but += '<center>'
+    but += '<a class="waves-effect waves-light btn" onclick="update()">Update</a>';
+    but += '</center>';
+
     $("#forbutton").html(but);
 }
 
@@ -227,6 +230,8 @@ function showAdd() {
     but += '<a class="waves-effect waves-light btn" onclick="insert()">Add</a>';
 
     $("#forbutton").html(but);
+
+    //alert("dsd");
 }
 
 function insert() {
@@ -258,7 +263,7 @@ function insert() {
     var ww = r1.winery;
     var tt = r2.type;
 
-    url = "controller.php?cmd=12&name=" + name + "&type=" + tt+ "&winery=" + ww + "&year=" + year + "&id=" + id + "&cost=" + cost + "&qty=" + qty;
+    url = "controller.php?cmd=12&name=" + name + "&type=" + tt + "&winery=" + ww + "&year=" + year + "&id=" + id + "&cost=" + cost + "&qty=" + qty;
     result = send_request(url);
 
     if (result.result === 1) {
@@ -313,7 +318,7 @@ function populateWineries() {
     $("#winery").append(div);
 }
 
-function logout(){
+function logout() {
     //var url,result;
     //
     //url = "controller.php?cmd=13";
@@ -324,4 +329,3 @@ function logout(){
     //    window.location.replace('admin.html');
     //}
 }
-

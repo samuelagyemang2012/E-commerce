@@ -6,9 +6,11 @@ include_once("Adb.php");
 //include_once ("mArchive.php");
 //>>>>>>> refs/remotes/origin/archive_login
 
+/**
+ * Class User
+ */
 class User extends Adb
 {
-
 
     /**
      * @param $username
@@ -26,6 +28,15 @@ class User extends Adb
     }
 
 
+    /**
+     * @param $name
+     * @param $type
+     * @param $winery
+     * @param $year
+     * @param $cost
+     * @param $id
+     * @return bool
+     */
     function update($name, $type, $winery, $year, $cost, $id)
     {
 
@@ -61,6 +72,9 @@ class User extends Adb
         return true;
     }
 
+    /**
+     * @return bool|mysqli_result
+     */
     function allWineries()
     {
         $string = "select * from winery";
@@ -68,6 +82,10 @@ class User extends Adb
         return $this->query($string);
     }
 
+    /**
+     * @param $name
+     * @return bool|mysqli_result
+     */
     function forWinery($name)
     {
         $string = "select winery_id from winery where winery_name = ?";
@@ -79,6 +97,10 @@ class User extends Adb
         return $s->get_result();
     }
 
+    /**
+     * @param $type
+     * @return bool|mysqli_result
+     */
     function forType($type)
     {
         $string = "select wine_type . wine_type_id from wine_type where wine_type . wine_type = ?";

@@ -298,13 +298,13 @@ where w.wine_id = ?";
     public function advancedSearch($name, $year)
     {
         $string = "select w.wine_id,
-  w.wine_name,
-  t.wine_type,
-  n.winery_name,
+                   w.wine_name,
+                   t.wine_type,
+                   n.winery_name,
   n.winery_id,
   w.year,
   i.cost
-from wine w
+  from wine w
   inner join wine_type t
     on w.wine_type = t.wine_type_id
   inner join winery n

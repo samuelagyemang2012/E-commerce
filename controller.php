@@ -60,6 +60,10 @@ if (isset($_REQUEST['cmd'])) {
             logOut();
             break;
 
+        case 14:
+            upload();
+            break;
+
         default :
             echo '{"result":0, "message":"error"}';
             break;
@@ -192,6 +196,9 @@ function getWineDetails()
     }
 }
 
+/**
+ *
+ */
 function logData()
 {
     include_once 'adminClass.php';
@@ -216,6 +223,9 @@ function logData()
     }
 }
 
+/**
+ *
+ */
 function update()
 {
     include_once 'adminClass.php';
@@ -238,6 +248,9 @@ function update()
     }
 }
 
+/**
+ *
+ */
 function add()
 {
     include_once 'adminClass.php';
@@ -263,6 +276,9 @@ function add()
 
 }
 
+/**
+ *
+ */
 function advancedSearch()
 {
     include_once 'Wine.php';
@@ -287,6 +303,9 @@ function advancedSearch()
     }
 }
 
+/**
+ *
+ */
 function allWineries()
 {
     include_once 'adminClass.php';
@@ -309,6 +328,9 @@ function allWineries()
     }
 }
 
+/**
+ *
+ */
 function forWUpdates()
 {
     include_once 'adminClass.php';
@@ -325,6 +347,9 @@ function forWUpdates()
     }
 }
 
+/**
+ *
+ */
 function forTUpdates()
 {
     include_once 'adminClass.php';
@@ -341,11 +366,21 @@ function forTUpdates()
     }
 }
 
+/**
+ *
+ */
 function logOut()
 {
 
 //    session_destroy();
 
 //    echo '{"result":1}';
+
+}
+
+/**
+ * @param $name
+ */
+function upload(){
 
 }
