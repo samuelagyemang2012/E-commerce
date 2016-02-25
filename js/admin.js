@@ -272,23 +272,6 @@ function insert() {
     }
 }
 
-function login() {
-    var url, result, u, p;
-
-    u = document.getElementById("username").value;
-    p = document.getElementById("password").value;
-
-    url = 'controller.php?cmd=6&username=' + u + '&password=' + p;
-
-    result = send_request(url);
-    //alert(result.result);
-    if (result.result == 1) {
-        $("#adminform").fadeOut(1000);
-        //$("#adminform").slideUp();
-        window.location.replace('edit.php');
-    }
-}
-
 function load_by_type(wine) {
     "use strict";
 
@@ -319,13 +302,34 @@ function populateWineries() {
 }
 
 function logout() {
-    //var url,result;
-    //
-    //url = "controller.php?cmd=13";
-    //
-    //result = send_request(url);
-    //
-    //if(result.result === 1){
-    //    window.location.replace('admin.html');
-    //}
+
+    //alert("ss");
+    var url, result;
+
+    url = "controller.php?cmd=13";
+
+    result = send_request(url);
+
+    //alert(result.result);
+
+    if (result.result === 1) {
+        window.location.href = 'admin.html';
+    }
+}
+
+function login() {
+    var url, result, u, p;
+
+    u = document.getElementById("username").value;
+    p = document.getElementById("password").value;
+
+    url = 'controller.php?cmd=6&username=' + u + '&password=' + p;
+
+    result = send_request(url);
+    //alert(result.result);
+    if (result.result == 1) {
+        $("#adminform").fadeOut(1000);
+        //$("#adminform").slideUp();
+        window.location.assign('edit.php');
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 include_once('adminClass.php');
 include_once('controller.php');
-session_start();
+
+echo $_SESSION['username'];
 ?>
 
     <!DOCTYPE html>
@@ -53,15 +54,18 @@ session_start();
         <li><a onclick="sort_price()" style="color:#00695c">Price</a></li>
     </ul>
 
+    <ul id="dropdown3" class="dropdown-content">
+        <li><a onclick="logout()" style="color:#00695c">Logout</a></li>
+    </ul>
+
     <div>
         <nav id="student_nav">
             <div class="nav-wrapper" style="background-color: #00695c ">
                 <a id="nav_heading" style="text-align :center">The Happy Drunkard</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a style="color: #ffffff" class="dropdown-button" data-activates="dropdown2">Sort Wine By</a>
-                    </li>
+                    <li><a style="color: #ffffff" class="dropdown-button" data-activates="dropdown2">Sort Wine By</a></li>
                     <li><a style="color: #ffffff" class="dropdown-button" data-activates="dropdown1">Wine Type</a></li>
-                    <li><a style="color: #ffffff" class="dropdown-button">Log Out</a></li>
+                    <li><a style="color: #ffffff" class="dropdown-button" data-activates="dropdown3">Actions</a></li>
 
                 </ul>
             </div>

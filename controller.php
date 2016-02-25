@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+//include_once 'edit.php';
+
 if (isset($_REQUEST['cmd'])) {
 
     $command = $_REQUEST['cmd'];
@@ -12,8 +16,6 @@ if (isset($_REQUEST['cmd'])) {
 
         case 2:
             allWines();
-//            displayWines();
-
             break;
 
         case 3:
@@ -207,20 +209,34 @@ function logData()
 
     $username = $_GET['username'];
     $password = $_GET['password'];
+    $result = $object->login($username, $password);
 
-    if ($result = $object->login($username, $password)) {
+    if (mysqli_num_rows($result) > 0) {
+//
         $row = $result->fetch_assoc();
 
         $_SESSION['username'] = $row['user_name'];
+
         $_SESSION['id'] = $row['cust_id'];
 
         echo '{"result": 1}';
 
-
-//        window.location.replace('edit.php');
     } else {
         echo '{"result":"0"}';
     }
+}
+
+function logout()
+{
+
+    unset($_SESSION['username']);
+
+    unset($_SESSION['id']);
+
+    session_destroy();
+
+    echo '{"result":1}';
+
 }
 
 /**
@@ -366,21 +382,7 @@ function forTUpdates()
     }
 }
 
-/**
- *
- */
-function logOut()
-{
 
-//    session_destroy();
-
-//    echo '{"result":1}';
-
-}
-
-/**
- *
- */
 function upload()
 {
     if ($_FILES['file']['size']) {
